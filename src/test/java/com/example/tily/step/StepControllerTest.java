@@ -47,7 +47,7 @@ public class StepControllerTest {
 
         // then
         result.andExpect(jsonPath("$.success").value("true"));
-        result.andExpect(jsonPath("$.result.id").value(1));
+        result.andExpect(jsonPath("$.result.id").value(8L));
     }
 
     @DisplayName("개인 로드맵 스텝_생성_실패_test_1: 존재하지 않은 로드맵")
@@ -56,7 +56,7 @@ public class StepControllerTest {
     public void individual_step_create_fail_test_1() throws Exception {
 
         // given
-        Long id = 5L;
+        Long id = 50L;
 
         String title = "스프링 시큐리티 - 세팅";
         StepRequest.CreateIndividualStepDTO requestDTO = new StepRequest.CreateIndividualStepDTO();
@@ -94,6 +94,45 @@ public class StepControllerTest {
                 post("/roadmaps/individual/"+ id +"/steps")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(requestBody)
+        );
+
+        // then
+        result.andExpect(jsonPath("$.success").value("false"));
+    }
+
+    @DisplayName("레퍼런스_조회_성공_test")
+    @WithUserDetails(value = "hong@naver.com")
+    @Test
+    public void find_reference_success_test() throws Exception {
+        // given
+        Long stepId = 4L;
+        Long roadmapsId = 1L;
+
+        // when
+        ResultActions result = mvc.perform(
+                post("/roadmaps/" + roadmapsId + "/steps/"+ stepId +"/references")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+        );
+
+        // then
+        result.andExpect(jsonPath("$.success").value("true"));
+
+        String responseBody = result.andReturn().getResponse().getContentAsString();
+        System.out.println("테스트 : "+responseBody);
+    }
+
+    @DisplayName("레퍼런스_조회_실패_test: 존재하지 않은 스텝")
+    @WithUserDetails(value = "hong@naver.com")
+    @Test
+    public void find_reference_fail_test() throws Exception {
+        // given
+        Long stepId = 10L;
+        Long roadmapsId = 1L;
+
+        // when
+        ResultActions result = mvc.perform(
+                post("/roadmaps/" + roadmapsId + "/steps/"+ stepId +"/references")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
         );
 
         // then
