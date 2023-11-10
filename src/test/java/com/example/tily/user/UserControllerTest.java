@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
@@ -29,9 +31,7 @@ public class UserControllerTest {
     public void user_email_check_success_test() throws Exception {
 
         // given
-        String email = "tngus1@test.com";
-        UserRequest.CheckEmailDTO requestDTO = new UserRequest.CheckEmailDTO();
-        requestDTO.setEmail(email);
+        UserRequest.CheckEmailDTO requestDTO = new UserRequest.CheckEmailDTO("tngus1@test.com");
 
         String requestBody = om.writeValueAsString(requestDTO);
 
@@ -54,9 +54,7 @@ public class UserControllerTest {
     public void user_send_email_code_success_test() throws Exception {
 
         // given
-        String email = "tngus@test.com";
-        UserRequest.SendEmailCodeDTO requestDTO = new UserRequest.SendEmailCodeDTO();
-        requestDTO.setEmail(email);
+        UserRequest.SendEmailCodeDTO requestDTO = new UserRequest.SendEmailCodeDTO("tngus@test.com");
 
         String requestBody = om.writeValueAsString(requestDTO);
 
@@ -76,9 +74,7 @@ public class UserControllerTest {
     public void user_send_email_code_fail_test_1() throws Exception {
 
         // given
-        String email = "test1@test.com";
-        UserRequest.SendEmailCodeDTO requestDTO = new UserRequest.SendEmailCodeDTO();
-        requestDTO.setEmail(email);
+        UserRequest.SendEmailCodeDTO requestDTO = new UserRequest.SendEmailCodeDTO("test1@test.com");
 
         String requestBody = om.writeValueAsString(requestDTO);
 
@@ -91,7 +87,7 @@ public class UserControllerTest {
 
         // then
         result.andExpect(jsonPath("$.success").value("false"));
-        result.andExpect(jsonPath("$.message").value("해당 이메일을 찾을 수 없습니다 : test1@test.com"));
+        result.andExpect(jsonPath("$.message").value("해당 이메일을 찾을 수 없습니다."));
     }
 
     @DisplayName("사용자_회원가입_성공_test")
@@ -99,10 +95,7 @@ public class UserControllerTest {
     public void user_join_success_test() throws Exception {
 
         // given
-        UserRequest.JoinDTO requestDTO = new UserRequest.JoinDTO();
-        requestDTO.setEmail("test@nate.com");
-        requestDTO.setName("test");
-        requestDTO.setPassword("test1234!");
+        UserRequest.JoinDTO requestDTO = new UserRequest.JoinDTO("test@nate.com", "test", "test1234!");
 
         String requestBody = om.writeValueAsString(requestDTO);
 
@@ -123,10 +116,7 @@ public class UserControllerTest {
     public void user_join_fail_test_1() throws Exception {
 
         // given
-        UserRequest.JoinDTO requestDTO = new UserRequest.JoinDTO();
-        requestDTO.setEmail("testnate.com");
-        requestDTO.setName("test");
-        requestDTO.setPassword("test1234!");
+        UserRequest.JoinDTO requestDTO = new UserRequest.JoinDTO("testnate.com", "test", "test1234!");
 
         String requestBody = om.writeValueAsString(requestDTO);
 
@@ -147,10 +137,7 @@ public class UserControllerTest {
     public void user_join_fail_test_2() throws Exception {
 
         // given
-        UserRequest.JoinDTO requestDTO = new UserRequest.JoinDTO();
-        requestDTO.setEmail("test@nate.com");
-        requestDTO.setName("test");
-        requestDTO.setPassword("test1234");
+        UserRequest.JoinDTO requestDTO = new UserRequest.JoinDTO("test@nate.com", "test", "test1234");
 
         String requestBody = om.writeValueAsString(requestDTO);
 
@@ -171,9 +158,7 @@ public class UserControllerTest {
     public void user_login_success_test() throws Exception {
 
         // given
-        UserRequest.LoginDTO requestDTO = new UserRequest.LoginDTO();
-        requestDTO.setEmail("tngus@test.com");
-        requestDTO.setPassword("hongHong!");
+        UserRequest.LoginDTO requestDTO = new UserRequest.LoginDTO("tngus@test.com", "hongHong!");
 
         String requestBody = om.writeValueAsString(requestDTO);
 
@@ -193,9 +178,7 @@ public class UserControllerTest {
     public void user_login_fail_test_1() throws Exception {
 
         // given
-        UserRequest.LoginDTO requestDTO = new UserRequest.LoginDTO();
-        requestDTO.setEmail("tngus1@test.com");
-        requestDTO.setPassword("Honghong!");
+        UserRequest.LoginDTO requestDTO = new UserRequest.LoginDTO("tngus1@test.com", "Honghong!");
 
         String requestBody = om.writeValueAsString(requestDTO);
 
@@ -208,7 +191,7 @@ public class UserControllerTest {
 
         // then
         result.andExpect(jsonPath("$.success").value("false"));
-        result.andExpect(jsonPath("$.message").value("해당 이메일을 찾을 수 없습니다 : tngus1@test.com"));
+        result.andExpect(jsonPath("$.message").value("해당 이메일을 찾을 수 없습니다."));
     }
 
     @DisplayName("사용자_로그인_실패_2:비밀번호 불일치")
@@ -216,9 +199,7 @@ public class UserControllerTest {
     public void user_login_fail_test_2() throws Exception {
 
         // given
-        UserRequest.LoginDTO requestDTO = new UserRequest.LoginDTO();
-        requestDTO.setEmail("tngus@test.com");
-        requestDTO.setPassword("Honghong!@");
+        UserRequest.LoginDTO requestDTO = new UserRequest.LoginDTO("tngus@test.com", "Honghong!@");
 
         String requestBody = om.writeValueAsString(requestDTO);
 
@@ -231,7 +212,7 @@ public class UserControllerTest {
 
         // then
         result.andExpect(jsonPath("$.success").value("false"));
-        result.andExpect(jsonPath("$.message").value("비밀번호가 일치하지 않습니다. "));
+        result.andExpect(jsonPath("$.message").value("비밀번호가 일치하지 않습니다."));
     }
 
     @DisplayName("사용자_비밀번호_재설정_성공_test")
@@ -239,9 +220,7 @@ public class UserControllerTest {
     public void user_change_password_success_test() throws Exception {
 
         // given
-        UserRequest.ChangePwdDTO requestDTO = new UserRequest.ChangePwdDTO();
-        requestDTO.setEmail("tngus@test.com");
-        requestDTO.setPassword("meta1234!!");
+        UserRequest.ChangePwdDTO requestDTO = new UserRequest.ChangePwdDTO("tngus@test.com", "meta1234!!");
 
         String requestBody = om.writeValueAsString(requestDTO);
 
@@ -261,9 +240,7 @@ public class UserControllerTest {
     public void user_change_password_fail_test_1() throws Exception {
 
         // given
-        UserRequest.ChangePwdDTO requestDTO = new UserRequest.ChangePwdDTO();
-        requestDTO.setEmail("tngus1@pusan.ac.kr");
-        requestDTO.setPassword("meta1234!!");
+        UserRequest.ChangePwdDTO requestDTO = new UserRequest.ChangePwdDTO("tngus1@pusan.ac.kr", "meta1234!!");
 
         String requestBody = om.writeValueAsString(requestDTO);
 
@@ -276,7 +253,7 @@ public class UserControllerTest {
 
         // then
         result.andExpect(jsonPath("$.success").value("false"));
-        result.andExpect(jsonPath("$.message").value("해당 이메일을 찾을 수 없습니다 : tngus1@pusan.ac.kr"));
+        result.andExpect(jsonPath("$.message").value("해당 이메일을 찾을 수 없습니다."));
     }
 
     @DisplayName("사용자_비밀번호_재설정_실패_test_2:잘못된 비밀번호 형식")
@@ -284,9 +261,7 @@ public class UserControllerTest {
     public void user_change_password_fail_test_2() throws Exception {
 
         // given
-        UserRequest.ChangePwdDTO requestDTO = new UserRequest.ChangePwdDTO();
-        requestDTO.setEmail("tngus@pusan.ac.kr");
-        requestDTO.setPassword("meta1234");
+        UserRequest.ChangePwdDTO requestDTO = new UserRequest.ChangePwdDTO("tngus@pusan.ac.kr", "meta1234");
 
         String requestBody = om.writeValueAsString(requestDTO);
 
@@ -300,6 +275,23 @@ public class UserControllerTest {
         // then
         result.andExpect(jsonPath("$.success").value("false"));
         result.andExpect(jsonPath("$.message").value("올바른 비밀번호 형식을 입력해주세요."));
+    }
+
+    @DisplayName("장미밭 조회 성공 test")
+    @WithUserDetails(value = "tngus@test.com")
+    @Test
+    public void view_gardens_test() throws Exception {
+
+
+        ResultActions result = mvc.perform(
+                get("/gardens")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+        );
+
+        String responseBody = result.andReturn().getResponse().getContentAsString();
+        System.out.println("테스트 : " + responseBody);
+
+        result.andExpect(jsonPath("$.success").value("true"));
     }
     
 }

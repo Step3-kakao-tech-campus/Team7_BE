@@ -18,12 +18,14 @@ public class Reference {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "step_id")
     private Step step;
 
     @Column(nullable = false)
     private String category;
-    @Column(nullable = false)
+
+    @Column(nullable = false, columnDefinition="TEXT", length = 1000)
     private String link;
 
     @Builder

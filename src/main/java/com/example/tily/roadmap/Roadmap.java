@@ -21,10 +21,7 @@ public class Roadmap extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @OneToMany(mappedBy =  "roadmap")
-//    private List<UserRoadmap> userRoadmaps = new ArrayList<>();
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creator_id")
     private User creator;
 
@@ -70,4 +67,6 @@ public class Roadmap extends BaseTimeEntity {
         this.isPublic = isPublic;
         this.isRecruit = isRecruit;
     }
+
+    public void updateImage (String image) {this.image = image; }
 }
