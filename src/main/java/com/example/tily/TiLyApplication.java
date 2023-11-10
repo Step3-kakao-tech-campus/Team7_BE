@@ -53,7 +53,8 @@ public class TiLyApplication {
 					newUser("test@test.com", "test", passwordEncoder, Role.ROLE_USER),
 					newUser("admin@test.com", "admin", passwordEncoder, Role.ROLE_ADMIN),
 					newUser("hoyai@naver.com", "masterHong", passwordEncoder, Role.ROLE_USER),
-					newUser("applier@test.com", "applier", passwordEncoder, Role.ROLE_USER)
+					newUser("applier@test.com", "applier", passwordEncoder, Role.ROLE_USER),
+					newUser("metameta@test.com","meta", passwordEncoder, Role.ROLE_USER)
 			));
 			roadmapRepository.saveAll(Arrays.asList(
 					newIndividualRoadmap(User.builder().id(1L).build(), Category.CATEGORY_INDIVIDUAL, "스프링 시큐리티", 10), //1
@@ -98,7 +99,8 @@ public class TiLyApplication {
 					newUserRoadmapRelation(Roadmap.builder().id(12L).build(), User.builder().id(2L).build(), "열심히 하겠습니다2!", true, GroupRole.ROLE_MEMBER, 0),
 					newUserRoadmapRelation(Roadmap.builder().id(13L).build(), User.builder().id(1L).build(), "열심히 하겠습니다!", false, GroupRole.ROLE_NONE, 0),
 					newUserRoadmapRelation(Roadmap.builder().id(12L).build(), User.builder().id(5L).build(), "매니저", true, GroupRole.ROLE_MANAGER, 0),
-					newUserRoadmapRelation(Roadmap.builder().id(10L).build(), User.builder().id(6L).build(), "참가 신청합니다", false, GroupRole.ROLE_MEMBER, 0)
+					newUserRoadmapRelation(Roadmap.builder().id(10L).build(), User.builder().id(6L).build(), "참가 신청합니다", false, GroupRole.ROLE_MEMBER, 0),
+					newUserRoadmapRelation(Roadmap.builder().id(10L).build(), User.builder().id(7L).build(), "참가 신청합니다", false, GroupRole.ROLE_MEMBER, 0)
 			));
 			stepRepository.saveAll(Arrays.asList(
 					newIndividualStep(Roadmap.builder().id(1L).build(), "스프링 시큐리티를 사용하는 이유"),
@@ -107,19 +109,22 @@ public class TiLyApplication {
 					newIndividualStep(Roadmap.builder().id(1L).build(), "소셜 로그인 사용하기"),
 
 					newGroupStep(Roadmap.builder().id(12L).build(),"다형성(Polymorphism)", "Day1", LocalDateTime.of(2023, 10, 1, 23 ,59) ),
-					newGroupStep(Roadmap.builder().id(12L).build(),"람다식(lambda expression)", "Day2", LocalDateTime.of(2023, 10, 3, 23 ,59) ),
+					newGroupStep(Roadmap.builder().id(12L).build(),"람다식(lambda expression)", "Day2", LocalDateTime.of(2023, 12, 3, 23 ,59) ),
 					newGroupStep(Roadmap.builder().id(12L).build(),"스트림(lambda expression)", "Day3", LocalDateTime.of(2023, 10, 5, 23 ,59) ),
+
 
 					newGroupStep(Roadmap.builder().id(5L).build(),"spring boot 1일차", "Day1", LocalDateTime.of(2023, 10, 1, 23 ,59) ),
 					newGroupStep(Roadmap.builder().id(5L).build(),"spring boot 2일차", "Day2", LocalDateTime.of(2023, 10, 3, 23 ,59) ),
-					newGroupStep(Roadmap.builder().id(5L).build(),"spring boot 3일차", "Day3", LocalDateTime.of(2023, 10, 5, 23 ,59) )
+					newGroupStep(Roadmap.builder().id(5L).build(),"spring boot 3일차", "Day3", LocalDateTime.of(2023, 10, 5, 23 ,59) ),
+
+					newIndividualStep(Roadmap.builder().id(1L).build(),"예외처리 마스터")
 			));
 			userStepRepository.saveAll(Arrays.asList(
 					newUserStepRelation(Step.builder().id(5L).build(), User.builder().id(1L).build(), true),
 					newUserStepRelation(Step.builder().id(5L).build(), User.builder().id(2L).build(), true),
 					newUserStepRelation(Step.builder().id(6L).build(), User.builder().id(1L).build(), false),
-					newUserStepRelation(Step.builder().id(6L).build(), User.builder().id(2L).build(), true),
-					newUserStepRelation(Step.builder().id(6L).build(), User.builder().id(5L).build(), true)
+					newUserStepRelation(Step.builder().id(6L).build(), User.builder().id(2L).build(), false),
+					newUserStepRelation(Step.builder().id(6L).build(), User.builder().id(5L).build(), false)
 //               newUserStepRelation(Step.builder().id(5L).build(), User.builder().id(1L).build(), false),
 //               newUserStepRelation(Step.builder().id(6L).build(), User.builder().id(1L).build(), false),
 //               newUserStepRelation(Step.builder().id(7L).build(), User.builder().id(1L).build(), false)
@@ -141,8 +146,8 @@ public class TiLyApplication {
 					newGroupTil(Roadmap.builder().id(12L).build(), Step.builder().id(5L).build(), User.builder().id(1L).build(), "다형성(Polymorphism)", "이것은 내용입니다1.", "이것은 제출할 내용입니다.", LocalDateTime.of(2023, Month.OCTOBER, 10, 1, 0, 0), 1,false ),
 					newGroupTil(Roadmap.builder().id(12L).build(), Step.builder().id(5L).build(), User.builder().id(2L).build(), "람다식(lambda expression)", "이것은 내용입니다2.", "이것은 제출할 내용입니다.", LocalDateTime.of(2023, Month.OCTOBER, 10, 2, 0, 0), 2,false ),
 					newGroupTil(Roadmap.builder().id(12L).build(), Step.builder().id(6L).build(), User.builder().id(1L).build(), "스트림(lambda expression)", "이것은 내용입니다3.", "이것은 제출할 내용입니다.", null, 3,false ),
-					newGroupTil(Roadmap.builder().id(12L).build(), Step.builder().id(6L).build(), User.builder().id(2L).build(), "다형성2(Polymorphism)", "이것은 내용입니다4.", "이것은 제출할 내용입니다.", LocalDateTime.of(2023, Month.OCTOBER, 10, 4, 0, 0), 4,false ),
-					newGroupTil(Roadmap.builder().id(12L).build(), Step.builder().id(6L).build(), User.builder().id(5L).build(), "매니저의 글", "이것은 내용입니다5.", "이것은 제출할 내용입니다.", LocalDateTime.of(2023, Month.OCTOBER, 10, 4, 0, 0), 4,false )
+					newGroupTil(Roadmap.builder().id(12L).build(), Step.builder().id(6L).build(), User.builder().id(2L).build(), "다형성2(Polymorphism)", "이것은 내용입니다4.", "이것은 제출할 내용입니다.", null, 4,false ),
+					newGroupTil(Roadmap.builder().id(12L).build(), Step.builder().id(6L).build(), User.builder().id(5L).build(), "TIL!!", "이것은 내용입니다5.", null, null,0,false)
 			));
 
 			commentRepository.saveAll(Arrays.asList(
@@ -186,8 +191,8 @@ public class TiLyApplication {
 				.currentNum(currentNum)
 				.stepNum(stepNum)
 				.image(image)
-				.isPublic(false)
-				.isRecruit(false)
+				.isPublic(true)
+				.isRecruit(true)
 				.build();
 	}
 
