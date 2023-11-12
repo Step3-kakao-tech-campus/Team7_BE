@@ -19,7 +19,7 @@
 
 | 문서 | 
 |:--------:|
-| [7조 배포 주소](https://kc29be941feb6a.user-app.krampoline.com) |
+| [7조 배포 주소](https://k50d31201bb8ea.user-app.krampoline.com) |
 | [API 문서](https://www.notion.so/API-d7c21dd77c1643348c98b01c8f3d9f2a) |
 | [피그마](https://www.figma.com/file/CBibyBNZ1jmESyVs0jnjSt/3%EB%8B%A8%EA%B3%84-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%99%80%EC%9D%B4%EC%96%B4-%ED%94%84%EB%A0%88%EC%9E%84?type=design&node-id=0-1&mode=design&t=0h0155bB1sb2wp98-0) |
 | [7조 노션](https://www.notion.so/2a6af605e8184499b21492cb7aabf6f5?v=0b907fed27634982ace606d37a4a6c88) |
