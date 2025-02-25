@@ -1,9 +1,9 @@
 # [🌹 틸리 - 꾸준하고픈 개발자를 위한 공간](https://kc29be941feb6a.user-app.krampoline.com/)
 
 <p align='center'>
-<img width="200" alt="스크린샷 2023-03-16 오전 9 30 09" src="https://github.com/monsta-zo/Team7_FE/assets/83194164/908cde6b-1f19-4a35-bc36-7c77309ffef1">
+ <img src="./images/logo.png" width="450" alt="로고">
 </p>
-
+</br></br>
 <p align='center'>
     <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white">
     <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
@@ -12,178 +12,160 @@
     <img src="https://img.shields.io/badge/redis-%23DD0031.svg?&style=for-the-badge&logo=redis&logoColor=white">
     <img src="https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white">
 </p>
+</br>
 
-<br/>
-
-# 🔗 관련 주소
-
-| 문서 | 
-|:--------:|
-| [7조 배포 주소](https://k50d31201bb8ea.user-app.krampoline.com) |
-| [API 문서](https://www.notion.so/API-d7c21dd77c1643348c98b01c8f3d9f2a) |
-| [피그마](https://www.figma.com/file/CBibyBNZ1jmESyVs0jnjSt/3%EB%8B%A8%EA%B3%84-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%99%80%EC%9D%B4%EC%96%B4-%ED%94%84%EB%A0%88%EC%9E%84?type=design&node-id=0-1&mode=design&t=0h0155bB1sb2wp98-0) |
-| [7조 노션](https://www.notion.so/2a6af605e8184499b21492cb7aabf6f5?v=0b907fed27634982ace606d37a4a6c88) |
-
-
-# 🏳️‍🌈 목차
-1. [서비스 기획 의도](https://github.com/Step3-kakao-tech-campus/Team7_BE/tree/Evaluation#-%EC%99%9C-%EC%9D%B4%EB%9F%B0-%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A5%BC)
-2. [주요 기능](https://github.com/Step3-kakao-tech-campus/Team7_BE/tree/Evaluation#-%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5)
-3. [BE - 핵심 개발 영역](https://github.com/Step3-kakao-tech-campus/Team7_BE/tree/Evaluation#-be---%ED%95%B5%EC%8B%AC-%EA%B0%9C%EB%B0%9C-%EC%98%81%EC%97%AD)
-4. [ERD](https://github.com/Step3-kakao-tech-campus/Team7_BE/tree/Evaluation#-erd)
-5. [아키텍쳐 구조](https://github.com/Step3-kakao-tech-campus/Team7_BE/tree/Evaluation#%EF%B8%8F-%EC%95%84%ED%82%A4%ED%83%9D%EC%B3%90-%EA%B5%AC%EC%A1%B0)
-6. [TIL-y 구성원](https://github.com/Step3-kakao-tech-campus/Team7_BE/tree/Evaluation#-til-y-%EA%B5%AC%EC%84%B1%EC%9B%90)
+> **미리보기**
+> - 💡 [서비스 기획 의도](#why-service)
+> - 📌 [주요 기능](#main-function)
+> - 💻 [BE - 핵심 개발 영역](#be-core)
+> - 📝 [ERD](#erd)
+> - 🔍 [아키텍쳐 구조](#architecture)
+> - 🙇🏻‍♂️ [TIL-y 구성원](#til-members)
+</br>
 
 
-<br/>
-<br/>
-
-# 🤔 왜 이런 서비스를?
+<h1 id="why-service">🤔 왜 이런 서비스를?</h1>
 
 ## 📍 문제 상황 인식 1단계 <카테캠 1,2 단계를 겪으며>
 - 카테캠의 핵심, 자기주도적 학습 -> **매일, 매주 TIL 작성 및 제출**
-- 하지만 100명이 넘는 학생들의 TIL을 **노션의 한 페이지에서 관리**
+- 하지만 100명이 넘는 학생들의 TIL을 **하나의 노션 페이지에서 일괄 관리**
 <p align='center'>
-    <img width="400" alt="image" src="https://github.com/monsta-zo/Team7_FE/assets/83194164/fa0355af-0242-472d-b0e6-0f313edd7a89">
-    <img width="350" alt="image" src="https://github.com/monsta-zo/Team7_FE/assets/83194164/45d8a088-7119-49f8-a311-cdd87d0acad5">
+    <img src="./images/study.jpg" width="450" alt="공부">
 </p>
 
 ```
-학생의 불편함 - 내 TIL이 삭제되는 일, 서로의 모든 TIL이 공개
-멘토의 불편함 - 일일히 들어가서 작성 여부를 확인, 제출 여부 확인 어려움
+학생의 불편함 - 내 TIL이 삭제될 수 있고, 서로의 TIL이 모두 공개됨
+멘토의 불편함 - 일일이 작성 여부를 확인해야 하고, 제출 여부 확인도 번거로움
 
 -> 학습일지를 더 편하게 관리하고 제출할 수는 없을까?
 ```
 
 ### ⭐️ 문제 해결 방안 <그룹 로드맵 서비스>
-- 로드맵을 만들어서 구성원들을 가입할 수 있게 하자
-- 로드맵의 각 단계를 직접 생성하고, 구성원들은 각 단계별로 학습할 수 있도록 하자
-- 제출 기한에 맞춰 단계별로 학습한 TIL을 제출할 수 있도록 하자
-- 한 눈에 제출된 TIL들을 확인할 수 있게 하자
-
-<hr/>
-
-## 📍 문제 상황 인식 2단계 <자기주도적 개발 학습의 어려움>
-- 개발, 스택 공부는 스스로 시작해야하는 경우가 많음
-```
-하지만 어디서부터 어떤 순서로 해야할지 막막함
-내가 잘하고 있는지도 확인하기 어려움
-
--> 어떤 순서로 공부할지, 또 잘하고 있는 지 확인할 방법은 없을까?
-```
-### ⭐️ 문제 해결 방안 <로드맵 제공 및 TIL 공유>
-- 스스로 학습할 수 있게 로드맵들을 제공하자
-- 각 단계별 참고 자료와 함께 학습하고 제출할 수 있도록 하자
-- 제출이 완료되면 해당 단계에 대해서 제출된 TIL들을 볼 수 있도록 하자.
-- 다른 사람들의 TIL을 보며 자신이 잘 학습했는지 확인할 수 있도록 하자.
- 
+- 로드맵을 만들어서 구성원들이 **참여**할 수 있게 하자
+- 로드맵의 각 단계를 직접 설정하고, 구성원들이 **단계별**로 학습할 수 있도록 하자
+- 제출 기한에 맞춰 각 단계별로 학습한 TIL을 제출할 수 있도록 하자
+- 제출된 TIL은 한눈에 확인할 수 있게 하자
+</br>
 
 <p align='center'>
-<img width="3000" alt="스크린샷 2023-03-16 오전 9 30 09" src="https://github.com/monsta-zo/Team7_FE/assets/83194164/0eb148fe-0d60-4b33-918e-546fdab21e69">
+<img src="./images/til.png" width="700" alt="틸">
 </p>
 
-<br/>
-<br/>
+</br>
 
+## 📍 문제 상황 인식 2단계 <자기주도적 개발 학습의 어려움>
+- 개발, 기술 스택 공부는 스스로 시작해야하는 경우가 많음
+```
+하지만 어디서부터 어떤 순서로 학습해야 할지 막막함
+내가 잘하고 있는지도 확인하기 어려움
 
-# 🧩 주요 기능
+-> 어떤 순서로 공부해야 할지, 또 잘하고 있는지 확인할 방법이 있을까?
+```
+### ⭐️ 문제 해결 방안 <로드맵 제공 및 TIL 공유>
+- 스스로 학습할 수 있게 로드맵을 **제공**하자
+- 단계별로 **참고 자료**를 제공하고, 학습 후 TIL을 제출할 수 있도록 하자
+- 제출이 완료되면, 해당 학습 단계에 제출된 TIL을 모두 볼 수 있도록 하자
+- 다른 사람들의 TIL을 참고하여, 본인의 학습이 잘 진행되고 있는지 **점검**할 수 있게 하자
+</br> 
+
+<p align='center'>
+<img src="./images/other.png" width="730" alt="틸">
+</p>
+
+</br>
+<h2 id="main-function">🧩 주요 기능</h2>
+
 |TIL 작성|학습 참고|
 |:--:|:--:|
-|- 마크다운 에디터를 통한 TIL 작성<br/>-사라질 걱정 없는 상시 저장 기능<br/> |- 각 STEP별 참고자료 확인<br/>- 글에 대한 코멘트 확인|
-|<img width="350" alt="스크린샷 2023-03-19 오후 11 51 04" src="https://github.com/monsta-zo/Team7_FE/assets/83194164/0891a195-b7d3-4cf5-8d83-66f15e1ce695">|<img width="350" alt="스크린샷 2023-03-19 오후 11 51 04" src="https://github.com/monsta-zo/Team7_FE/assets/83194164/7f9dd89d-d40d-415b-9c2b-f63363ced835">|
+|- 마크다운 에디터를 통해 TIL 작성<br/>- 자동 저장 기능으로 작성 도중 데이터 유실 방지<br/> |- 각 STEP별 참고자료 조회<br/>- 제출한 TIL에 달린 코멘트 확인 가능|
+|<img src="./images/til2.png" width="375" alt="TIL">|<img src="./images/reference.gif" width="375" alt="학습 참고">|
 
 |메인|참고 자료|
 |:--:|:--:|
-|- 작성한 TIL 목록들을 검색하고 확인<br/>- 장미밭을 통해 학습 열정 확인 <br/> - 개인, 그룹 로드맵을 분류하여 관리|- 로드맵에 참고할 자료를 첨부하는 기능<br/>-유튜브, 참고자료 링크<br/> |
-|<img width="350" alt="스크린샷 2023-03-19 오후 11 51 04" src="https://github.com/monsta-zo/Team7_FE/assets/83194164/101dc410-2f68-4ca4-84b6-c5d00005df84">|<img width="350" alt="스크린샷 2023-03-19 오후 11 51 04" src="https://github.com/monsta-zo/Team7_FE/assets/83194164/f0812e9f-f1df-4c94-bbb0-a0dab46f022f">|
+|- 작성한 TIL 목록을 검색하고 조회<br/>- 장미밭을 통해 학습 열정과 진행 상황 확인 <br/> - 개인과 그룹 로드맵을 구분하여 관리|- 로드맵에 외부 참고자료(URL, 유튜브) 첨부<br/> |
+|<img src="./images/main.png" width="375" alt="메인">|<img src="./images/roadSpecific.png" width="375" alt="참고 자료">|
 
 |로드맵 목록|구성원 관리|
 |:--:|:--:|
-|- 내가 참여하고 있는 로드맵의 목록을 확인<br/>- 현재 모집중인 그룹 로드맵 목록 확인|- 현재 로드맵에 속한 그룹원 목록<br/>-멤버 권한 변경, 강퇴 기능<br/> -그룹원의 학습일지 작성현황 확인<br/>  -로드맵 신청 관리, 수락 거절<br/>|
-|<img width="350" alt="스크린샷 2023-03-19 오후 11 51 04" src="https://github.com/monsta-zo/Team7_FE/assets/83194164/0cabf489-e6e4-4236-aba1-b8d78b18f316">|<img width="350" alt="스크린샷 2023-03-19 오후 11 51 04" src="https://github.com/monsta-zo/Team7_FE/assets/83194164/a975f794-b7b1-40db-be2f-51890e4d9d39">|
+|- 내가 참여하고 있는 로드맵의 목록 확인<br/>- 현재 모집 중인 그룹 로드맵 목록 확인|- 로드맵에 속한 그룹원 목록 조회<br/>- 멤버 권한 변경 및 강퇴 처리와 로드맵 신청자 승인·거절 관리<br/> - 그룹원 TIL 작성 현황 확인<br/>|
+|<img src="./images/road.png" width="375" alt="메인">|<img src="./images/member.png" width="375" alt="팀">|
 
 |TIL 공유하기|깃허브 업로드|
 |:--:|:--:|
-|- 내가 공부하는 주제에 대해 타인과 생각을 공유<br/>|- 작성한 학습일지를 깃허브에 업로드 하는 기능<br/>
-|<img width="350" alt="스크린샷 2023-03-19 오후 11 51 04" src="https://github.com/monsta-zo/Team7_FE/assets/83194164/db9467c1-8759-49d7-9f10-1ddda8744ea3">|<img width="350" alt="스크린샷 2023-03-19 오후 11 51 04" src="https://github.com/monsta-zo/Team7_FE/assets/83194164/735e6859-ff34-49f9-a797-930fddaecd04">|
-
-
-<br/>
-<br/>
-
-
-# 🎯 BE - 핵심 개발 영역
-
-
-<table>
-  <tr>
-    <th>기능</th>
-    <th>설명</th>
-  </tr>
-  <tr>
-    <td>로그인/회원가입</td>
-    <td> gmail(smtp)와 redis를 사용하여 이메일 인증 시스템을 구현했지만, 배포환경 변화로 인해 크램폴린에 배포하지는 못함 </br> 로그인과 재발급 요청에 따른 access token, refresh token 발급을 통해 JWT 관리 </td>
-  </tr>
-  <tr>
-    <td> 검색 기능 구현 </td>
-    <td> 메인 페이지에서 TIL 제목으로 검색, 장미밭 클릭으로 특정 날짜의 TIL 조회, 로드맵 페이지에서 로드맵 이름으로 검색, 상세 페이지에서 구성원 이름으로 검색 기능 구현 </td>
-  </tr>
-  <tr>
-    <td> 이미지 업로드 </td>
-    <td> S3 구축과 연동을 통해 프로필 사진 업로드, TIL 사진 업로드, 삭제 기능 구현 (크램폴린에서 연동하지 못함) </td>
-  </tr>
-  <tr>
-    <td> 알림 기능 구현 </td>
-    <td> 자신이 제출한 TIL에 달린 댓글에 대한 알림 기능 구현 </td>
-  </tr>
-  <tr>
-    <td> 댓글 기능 구현 </td>
-    <td> 제출한 TIL에 댓글 작성과 수정, 삭제 기능 구현 </td>
-  </tr>
-  <tr>
-    <td> 삭제 기능 구현 </td>
-    <td> 삭제 기능을 Soft delete로 구현하여, 데이터 무결성을 유지하고, 삭제된 데이터의 이력을 추적하거나 데이터 분석에 활용할 수 있도록 함. </br> JPQL과 @Where을 이용하여 실제로 데이터가 삭제되지 않고 삭제된 것처럼 보이도록 구현. </td>
-  </tr>
-  <tr>
-    <td> 예외 처리 </td>
-    <td> 예외 코드를 ExceptionCode로 일괄 관리를 통해 유지 보수성와 중복 최소화 함 </td>
-  </tr>
-  <tr>
-    <td> 권한 처리 </td>
-    <td> 로드맵에서의 사용자의 역할(master, manager, member, none)에 맞는 권한 처리 </td>
-  </tr>
-  <tr>
-    <td> 테스트 코드 작성  </td>
-    <td> Junit을 이용하여 컨트룰러 단위 테스트를 진행하며 프로덕션 환경에서의 안전성 확보함 </br> </td>
-  </tr>
-  <tr>
-    <td> 성능 개선 </td>
-    <td> lazy fetching 전략과 fetch join 사용으로 N+1 문제 개선 및 쿼리 효율성을 증가시킴 </br> 또한 엔티티 간 양방향 연관 관계가 아닌 단방향 연관 관계 설정을 통해 불필요한 참조와 의존성을 줄임 </td>
-  </tr>
-  <tr>
-    <td> 가독성 및 리팩토링 </td>
-    <td> DTO를 class가 아닌 record로 구현해 depth를 줄이고 재사용성과 가독성을 높임 </td>
-  </tr>
-</table>
+|- 자신이 학습한 내용(TIL)을 타인과 공유<br/>- 다른 사람의 학습 방식을 참고하여 동기 부여|- 작성한 TIL을 깃허브에 업로드<br/> - 개인 깃허브 레포지토리에 학습 기록 보관
+|<img src="./images/with.png" width="375" alt="공유">|<img src="./images/github.gif" width="375" alt="깃">|
 
 </br>
+
+<h2 id="be-core">🎯 BE - 핵심 개발 영역</h2>
+
+|   기능   |                                                                                                                                       설명                                                                                                                                       |
+|:--------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 로그인/회원가입 | - JWT를 활용해 **인증 시스템** 구현<br>- 로그인 시 Access Token 발급, 만료 시 Refresh Token을 활용해 인증 상태 유지 |
+|   검색 기능  | - 페이지별 검색 기능을 구현하여 TIL 제목, 특정 날짜, 로드맵 이름, 구성원 이름으로 데이터를 빠르게 **검색** 가능 |
+| 이미지 업로드 | - AWS S3를 활용하여 프로필 사진과 TIL 이미지를 업로드하고, 삭제할 수 있는 기능 구현 |
+|   알림 기능  | - 사용자가 제출한 TIL에 댓글이 달리면, 알림을 제공하는 기능 구현 |
+|   댓글 기능  | - 제출된 TIL에 댓글을 작성하고, 수정 및 삭제할 수 있는 기능을 구현 |
+|   삭제 기능  | - JPQL과 @Where을 활용하여 물리적 삭제 없이 **논리적 삭제** 구현<br>- 논리적 삭제를 통해 데이터 무결성을 유지하고, 삭제된 데이터의 이력 추적 및 활용 가능  |
+| 예외 처리 | - **공통 예외 처리**를 통해 유지보수성 향상 및 중복 최소화 |
+| 권한 처리 | - 로드맵 내 역할에 따른 권한 부여 및 **접근 제어** 구현 (Master, Manager, Member, None) |
+| 테스트 코드 | - JUnit5를 활용해 **컨트롤러 단위테스트** 작성 |
+| 성능 개선 | - Lazy Loading과 Fetch Join을 적절히 사용해 **N+1** 문제 해결<br>- 불필요한 의존성을 줄이기 위해 양방향보다 **단방향** 연관관계를 우선 적용 |
+| 리팩토링 | - DTO를 class가 아닌 **record**로 선언하여 depth를 줄이고, 재사용성과 가독성 개선 |
+
 </br>
 
-
-# 🏠 ERD
-![TIL-y_ERD](https://github.com/Step3-kakao-tech-campus/Team7_BE/assets/95485737/e3db0e8f-ec7b-4048-8c6e-a628722776ea)
+<h2 id="erd">🏠 ERD</h2>
+<p align='center'>
+<img src="./images/erd.png" width="850" alt="ERD">
+</p>
 
 <br/>
-<br/>
-
-# ⚙️ 아키택쳐 구조
-<img width="800" alt="스크린샷 2023-11-11 오후 8 02 21" src="https://github.com/Step3-kakao-tech-campus/Team7_BE/assets/131665728/aff5dd73-0cc2-4da4-8e53-f838630b7afd">
+ 
+<h2 id="architecture">⚙️ 아키택쳐 구조</h2>
+<p align='center'>
+<img src="./images/archi.png" width="650" alt="아키텍쳐">
+</p>
 </br>
+
+> - Redis를 이용해 Refresh Token을 **저장**하고 인증 시 유효성 검증 최적화.
+> - Docker를 이용해 각 서비스(Spring, React, Redis, MariaDB)를 **모듈화**하고, 네트워크 설정과 종속성 관리 자동화
+> - React(Next.js)와 Spring을 Nginx 리버스 프록시를 통해 연결하여 클라이언트와 서버사이드 요청을 동일한 API 엔드포인트로 **라우팅**
+> - Next.js의 SSR을 활용해 클라이언트 렌더링 이전에 **접근 권한**을 제어하고, React-Query의 prefetch/Hydration으로 **초기 데이터 로딩** 최적화
 </br>
 
+<h2 id="demo"> 🎥 시연 영상</h2>
 
+#### 📁 랜딩 페이지 → 회원가입 → 튜토리얼
+https://github.com/user-attachments/assets/ce510cc0-ac15-47e5-9d82-a16a7efa39e5
 
-# 👨‍💻🧑‍💻 TIL-y 구성원
+</br>
 
+#### 📁 메인 화면
+https://github.com/user-attachments/assets/3936ebb1-0a03-4a4e-97f9-086c55d77fc1
+
+</br>
+
+#### 📁 TIL 작성하기
+https://github.com/user-attachments/assets/3de8ed81-d4d4-46a8-b7b9-fd22daa90e66
+
+</br>
+
+#### 📁 로드맵 둘러보기 → 로드맵 관리
+https://github.com/user-attachments/assets/caaf9fd2-ed16-4253-851b-49d65101f83c
+
+</br>
+
+<h2 id="refer"> 🔗 관련 주소</h2>
+
+| 문서 | 
+|:--------:|
+| [API 문서](https://blog.naver.com/hoyai-/223220052770) |
+| [피그마](https://www.figma.com/file/CBibyBNZ1jmESyVs0jnjSt/3%EB%8B%A8%EA%B3%84-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%99%80%EC%9D%B4%EC%96%B4-%ED%94%84%EB%A0%88%EC%9E%84?type=design&node-id=0-1&mode=design&t=0h0155bB1sb2wp98-0) |
+
+</br>
+
+<h2 id="til-members">👨‍💻🧑‍💻 TIL-y 구성원</h2>
 <table>
   <tr>
     <td>김동영</td>
@@ -215,6 +197,4 @@
   </tr>
 </table>
 </br>
-
-
 
